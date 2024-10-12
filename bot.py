@@ -558,7 +558,7 @@ def connect_to_db_bot():
         return connection
     except psycopg2.Error as error:
         print("Не удалось подключиться к базе данных: ", error)
-	exit(1)
+        exit(1)
 
 # функция для получения списка email из email_addresses
 def get_emails(update: Update, context):

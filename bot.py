@@ -20,7 +20,7 @@ TOKEN = os.getenv("TOKEN")
 
 SSH_HOST = os.getenv("RM_HOST")
 SSH_PORT = os.getenv("RM_PORT")
-SSH_USERNAME = os.getenv("RM_USERNAME")
+SSH_USERNAME = os.getenv("RM_USER")
 SSH_PASSWORD = os.getenv("RM_PASSWORD")
 
 DB_DATABASE = os.getenv("DB_DATABASE")

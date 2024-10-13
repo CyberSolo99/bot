@@ -521,8 +521,8 @@ def get_repl_logs(update: Update, context):
     try:
         ssh_client.connect(
             hostname=DB_HOST,
-            port=DB_PORT,
-            username=SSH_PORT,
+            port=SSH_USERNAME,
+            username=DB_USER,
             password=DB_PASSWORD,
         )
 

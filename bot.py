@@ -522,23 +522,19 @@ def get_repl_logs(update: Update, context):
         ssh_client.connect(
             hostname=DB_HOST,
             port=DB_PORT,
-            username=DB_USER,
+            username=SSH_PORT,
             password=DB_PASSWORD,
         )
 
-        # Получаем версию PostgreSQL
-        stdin, stdout, stderr = ssh_client.exec_command("postgres --version")
-        version_output = stdout.read().decode("utf-8").strip()
-
-        # Извлекаем основную версию PostgreSQL
-        version = version_output.split()[2].split(".")[0]
-
         # Выполняем команду tail для соответствующего лог-файла
-        log_command = f"tail -n 20 /var/log/postgresql/postgresql-{version}-main.log"
+        log_command = "tail -n 20 /var/log/postgresql/postgresql.log"
         stdin, stdout, stderr = ssh_client.exec_command(log_command)
 
         log_information = stdout.read().decode("utf-8")
-        update.message.reply_text(log_information)
+        if log_information:
+            update.message.reply_text(log_information)
+        else:
+            update.message.reply_text("log-файл пуст или не найден.")
 
     except Exception as error:
         update.message.reply_text(f"Ошибка подключения: {str(error)}")

@@ -28,7 +28,9 @@ DB_USER = os.getenv("DB_USER")
 DB_PASSWORD = os.getenv("DB_PASSWORD")
 DB_HOST = os.getenv("DB_HOST")
 DB_PORT = os.getenv("DB_PORT")
-
+DB_USER_SSH = os.getenv("DB_USER_SSH")
+DB_PORT_SSH = os.getenv("DB_PORT_SSH")
+DB_PASSWORD_SSH = os.getenv("DB_PASSWORD_SSH")
 # Настройка логирования
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
@@ -521,9 +523,9 @@ def get_repl_logs(update: Update, context):
     try:
         ssh_client.connect(
             hostname=DB_HOST,
-            port=SSH_USERNAME,
-            username=DB_USER,
-            password=DB_PASSWORD,
+            port=DB_PORT_SSH,
+            username=DB_USER_SSH,
+            password=DB_PASSWORD_SSH,
         )
 
         # Выполняем команду tail для соответствующего лог-файла
